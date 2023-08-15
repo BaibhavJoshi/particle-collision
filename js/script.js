@@ -42,14 +42,14 @@ window.addEventListener("resize", function(event){
 
 // Initializing particles
 
-const verticalGridLines = 20;
-const horizontalGridLines = 20;
+const verticalGridLines = 50;
+const horizontalGridLines = 50;
 const numBoxes = verticalGridLines * horizontalGridLines;
 const boxWidth = canvas.width/verticalGridLines;
 const boxHeight = canvas.width/horizontalGridLines;
 let matrix = new Array(verticalGridLines).fill(0).map(() => new Array(horizontalGridLines).fill(0));
 
-let numParticles = numBoxes / 3;
+let numParticles = numBoxes / 2;
 let particles;
 
 
@@ -61,7 +61,7 @@ function initialize(){
 
         let x;
         let y;
-        const radius = randomIntFromRange(boxWidth/4, boxWidth/3);
+        const radius = randomIntFromRange(boxWidth/6, boxWidth/2);
         const color = randomColor(colors);
 
         // Get random box from matrix
@@ -116,7 +116,7 @@ function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     particles.forEach(particle => {
-        particle.update(particles);
+        particle.update(particles, mouse);
     });
 }
 
